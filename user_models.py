@@ -1,6 +1,6 @@
 """SQLAlchemy models for USERS for Costume Inventory DB Management App."""
 
-import models
+from models import db
 from flask_bcrypt import Bcrypt
 
 
