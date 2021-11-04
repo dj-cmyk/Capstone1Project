@@ -21,6 +21,8 @@ class Level(db.Model):
         unique=True,
     )
 
+    roles = db.relationship('Role')
+
 
 
 class Production(db.Model):
@@ -146,6 +148,8 @@ class CostumeGroup(db.Model):
         db.ForeignKey('headpieces.id', ondelete='SET NULL'),
     )
 
+    headpiece = db.relationship('Headpiece')
+
 
 class Prop(db.Model):
     '''docstring'''
@@ -218,6 +222,8 @@ class Role(db.Model):
         db.ForeignKey('levels.id', ondelete='SET NULL'),
     )
 
+    costume = db.relationship('Role_Costume')
+
 
 class Role_Costume(db.Model):
     '''docstring'''
@@ -238,6 +244,8 @@ class Role_Costume(db.Model):
         db.Integer,
         db.ForeignKey('costume_groups.id', ondelete='SET NULL'),
     )
+
+    costume = db.relationship('CostumeGroup')
 
 
 

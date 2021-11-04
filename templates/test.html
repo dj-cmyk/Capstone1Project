@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <div class="display-cards">  
+        <div class="card" style="width: 18rem;">
+            {% for role in level.roles %}
+                <p>{{ role.name }}</p>
+                <p>{{ role.id }}</p>
+                <p>{{ role.costume[0].costume.name }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}

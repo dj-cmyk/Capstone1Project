@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="display-cards">
+
+  <div class="card" style="width: 18rem;">
+      <h5 class="card-title">{{ production.name }}</h5>
+      <p class="card-text">{{ production.is_current }}</p>
+    </div>
+    <p>{{level.levelName}}</p>
+    <div class="card-body">
+      <a href="headpieces.html" class="btn btn-sm btn-secondary">All Costumes</a>
+      <a href="headpieces.html" class="btn btn-sm btn-secondary">Edit</a>
+      <a href="index.html" class="btn btn-sm btn-secondary">Home</a>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

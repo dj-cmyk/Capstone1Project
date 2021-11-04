@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="display-cards">
+{% for headpiece in headpieces %}
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ headpiece.image_url }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ headpiece.name }}</h5>
+      <p class="card-text">{{ headpiece.description }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Quantity: {{ headpiece.quantity}}</li>
+      <li class="list-group-item">Current Location: {{ headpiece.current_location}}</li>
+      <li class="list-group-item">Storage Location: {{ headpiece.storage_location}}</li>
+    </ul>
+    <div class="card-body">
+      <a href="headpieces.html" class="btn btn-sm btn-secondary">Details</a>
+      <a href="headpieces.html" class="btn btn-sm btn-secondary">Edit</a>
+      <a href="index.html" class="btn btn-sm btn-secondary">Home</a>
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+{% endblock %}
