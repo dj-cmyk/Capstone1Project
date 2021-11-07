@@ -15,13 +15,12 @@ class Level(db.Model):
         primary_key=True,
     )
 
-    levelName = db.Column(
+    name = db.Column(
         db.Text,
         nullable=False,
         unique=True,
     )
 
-    roles = db.relationship('Role')
 
 
 
@@ -47,6 +46,16 @@ class Production(db.Model):
         default=False
     )
 
+    last_performed = db.Column(
+        db.Integer
+    )
+
+    image_url = image_url = db.Column(
+        db.Text,
+        default="/static/images/productions/default.jpg",
+    )
+
+    
 
 
 class Headpiece(db.Model):
@@ -66,7 +75,7 @@ class Headpiece(db.Model):
 
     image_url = db.Column(
         db.Text,
-        default="/static/images/***************",
+        default="/static/images/headpieces/default.jpg",
     )
 
     description = db.Column(
@@ -88,6 +97,7 @@ class Headpiece(db.Model):
         nullable=False
     )
 
+    
 
 
 class CostumeGroup(db.Model):
@@ -107,7 +117,7 @@ class CostumeGroup(db.Model):
 
     image_url = db.Column(
         db.Text,
-        default="/static/images/***************",
+        default="/static/images/costumes/default.jpg",
     )
 
     description = db.Column(
@@ -129,26 +139,10 @@ class CostumeGroup(db.Model):
         nullable=False
     )
 
-    color = db.Column(
-        db.Text,
-    )
-
-    size_chart_url = db.Column(
-        db.Text, 
-        default="/static/images/***************",
-    )
-
     assignment_sheet_url = db.Column(
         db.Text, 
-        default="/static/images/***************",
+        default="/static/assignmentSheets/default.pdf",
     )
-
-    headpiece_id = db.Column(
-        db.Integer,
-        db.ForeignKey('headpieces.id', ondelete='SET NULL'),
-    )
-
-    headpiece = db.relationship('Headpiece')
 
 
 class Prop(db.Model):
@@ -168,7 +162,7 @@ class Prop(db.Model):
 
     image_url = db.Column(
         db.Text,
-        default="/static/images/***************",
+        default="/static/images/props/default.jpg",
     )
 
     description = db.Column(
@@ -190,11 +184,7 @@ class Prop(db.Model):
         nullable=False
     )
 
-    costume_group_id = db.Column(
-        db.Integer,
-        db.ForeignKey('costume_groups.id', ondelete='SET NULL'),
-    )
-
+    
 
 
 class Role(db.Model):
@@ -214,38 +204,49 @@ class Role(db.Model):
 
     production_id = db.Column(
         db.Integer,
-        db.ForeignKey('productions.id', ondelete='SET NULL'),
+        db.ForeignKey('productions.id'),
+        nullable=False
     )
 
     level_id = db.Column(
         db.Integer,
-        db.ForeignKey('levels.id', ondelete='SET NULL'),
+        db.ForeignKey('levels.id'),
+        nullable=False
     )
 
-    costume = db.relationship('Role_Costume')
-
-
-class Role_Costume(db.Model):
-    '''docstring'''
-
-    __tablename__ = 'roles_costumes'
-
-    id = db.Column(
+    cg1_id = db.Column(
         db.Integer,
-        primary_key=True,
+        db.ForeignKey('costume_groups.id'),
+        nullable=False
     )
 
-    role_id = db.Column(
+    cg2_id = db.Column(
         db.Integer,
-        db.ForeignKey('roles.id', ondelete='SET NULL'),
+        db.ForeignKey('costume_groups.id'),
     )
 
-    costume_group_id = db.Column(
+    cg3_id = db.Column(
         db.Integer,
-        db.ForeignKey('costume_groups.id', ondelete='SET NULL'),
+        db.ForeignKey('costume_groups.id'),
     )
 
-    costume = db.relationship('CostumeGroup')
+    headpiece_id = db.Column(
+        db.Integer,
+        db.ForeignKey('headpieces.id'),
+        nullable=False
+    )
+
+    prop_id = db.Column(
+        db.Integer,
+        db.ForeignKey('props.id'),
+    )
+
+    costume = db.relationship('CostumeGroup', foreign_keys=[cg1_id], backref='roles')
+    skirt = db.relationship('CostumeGroup', foreign_keys=[cg2_id])
+    armpuffs = db.relationship('CostumeGroup', foreign_keys=[cg3_id])
+    prop = db.relationship('Prop', backref='roles')
+    level = db.relationship('Level', backref='roles')
+    headpiece = db.relationship('Headpiece', backref='roles')
 
 
 

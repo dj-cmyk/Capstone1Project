@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="display-cards">
+{% for production in productions %}
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ production.image_url }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ production.name }}</h5>
+      {% if production.is_current == 't' %}
+      <p class="card-text">Currently In Production</p>
+      {% endif %}
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Last Performed: {{ production.last_performed }}</li>
+    </ul>
+    <div class="card-body">
+      <a href="/{{ production.id }}/costumes" class="btn btn-sm btn-secondary">Costumes</a>
+      <a href="/productions/{{ production.id }}/edit" class="btn btn-sm btn-secondary">Edit</a>
+      <a href="/" class="btn btn-sm btn-secondary">Home</a>
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+{% endblock %}
