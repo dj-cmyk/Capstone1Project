@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ role.name }}</h2>
+
+    <div class="card headpiece-card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ role.headpiece.image_url}}" alt="Card image cap">
+        <div class="card-body">
+        <h5 class="card-title">{{ role.headpiece.name }}</h5>
+        <p class="card-text"> -- {{ role.level.name }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ role.headpiece.description }}</li>
+            <li class="list-group-item">Quantity: {{ role.headpiece.quantity }}</li>
+            <li class="list-group-item">Current Location: {{ role.headpiece.current_location }}</li>
+            <li class="list-group-item">Storage Location: {{ role.headpiece.storage_location }}</li>
+    </div>
+
+    <div class="card costume-card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ role.costume.image_url }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ role.costume.name }}</h5>
+            <p class="card-text"> -- {{ role.level.name }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ role.costume.description }}</li>
+            <li class="list-group-item">Quantity: {{ role.costume.quantity }}</li>
+            <li class="list-group-item">Current Location: {{ role.costume.current_location }}</li>
+            <li class="list-group-item">Storage Location: {{ role.costume.storage_location }}</li>
+        </ul>
+        <div class="card-body">
+            <a href="{{ role.costume.assignment_sheet_url }}" class="card-link">Assignment Sheet</a>
+        </div>
+    </div>
+    
+    {% if role.skirt %}
+    <div class="card costume-card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ role.skirt.image_url }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ role.skirt.name }}</h5>
+            <p class="card-text"> -- {{ role.level.name }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ role.skirt.description }}</li>
+            <li class="list-group-item">Quantity: {{ role.skirt.quantity }}</li>
+            <li class="list-group-item">Current Location: {{ role.skirt.current_location }}</li>
+            <li class="list-group-item">Storage Location: {{ role.skirt.storage_location }}</li>
+        </ul>
+        <div class="card-body">
+            <a href="{{ role.skirt.assignment_sheet_url }}" class="card-link">Assignment Sheet</a>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if role.armpuffs %}
+    <div class="card costume-card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ role.armpuffs.image_url }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ role.armpuffs.name }}</h5>
+            <p class="card-text"> -- {{ role.level.name }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ role.armpuffs.description }}</li>
+            <li class="list-group-item">Quantity: {{ role.armpuffs.quantity }}</li>
+            <li class="list-group-item">Current Location: {{ role.armpuffs.current_location }}</li>
+            <li class="list-group-item">Storage Location: {{ role.armpuffs.storage_location }}</li>
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if role.prop %}
+    <div class="card prop-card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ role.prop.image_url}}" alt="Card image cap">
+        <div class="card-body">
+        <h5 class="card-title">{{ role.prop.name }}</h5>
+        <p class="card-text"> -- {{ role.level.name }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{ role.prop.description }}</li>
+        <li class="list-group-item">Quantity: {{ role.prop.quantity }}</li>
+        <li class="list-group-item">Current Location: {{ role.prop.current_location }}</li>
+        <li class="list-group-item">Storage Location: {{ role.prop.storage_location }}</li>
+        </ul>
+    </div>
+    {% endif %}
+
+{% endblock %}

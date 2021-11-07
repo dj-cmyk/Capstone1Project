@@ -105,7 +105,7 @@ def get_all_headpieces():
 
 @app.route('/productions')
 def list_all_productions():
-    '''docstring'''
+    '''list of all productions currently in rotation'''
 
     productions = Production.query.all()
 
@@ -120,9 +120,17 @@ def list_all_productions():
 
 @app.route('/<prod_id>/costumes')
 def all_costumes_by_production(prod_id):
-    '''docstring'''
+    '''list of all costumes in a specific production'''
 
     production = Production.query.get_or_404(prod_id)
     roles = Role.query.filter_by(production_id = prod_id)
 
     return render_template('roles.html', production=production, roles=roles)
+
+
+@app.route('/costumes/<role_id>')
+def get_costume_details(role_id):
+    '''docstring'''
+    role = Role.query.get_or_404(role_id)
+
+    return render_template('details.html', role=role)
