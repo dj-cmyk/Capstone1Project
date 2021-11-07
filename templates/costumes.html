@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for costume in costumes %}
+
+    <div class="card costume-card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ costume.image_url }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ costume.name }}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ costume.description }}</li>
+            <li class="list-group-item">Quantity: {{ costume.quantity }}</li>
+            <li class="list-group-item">Current Location: {{ costume.current_location }}</li>
+            <li class="list-group-item">Storage Location: {{ costume.storage_location }}</li>
+        </ul>
+    </div>
+    
+    {% endfor %}
+
+{% endblock %}

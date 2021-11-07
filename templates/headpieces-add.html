@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+    
+    
+    <div class='headpiece-form'>
+        <h2 id="form-title"> Add New Headpiece: </h2>
+        <form id='headpiece-form' method='POST' enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            {% for field in form if field.widget.input_type != 'hidden' %}
+            <p>
+                {{ field.label }}
+                {{ field }}
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+            </p>
+            {% endfor %}
+            <button type='submit' class='btn btn-secondary'>Submit</button>
+        </form>
+    </div>
+
+{% endblock %}

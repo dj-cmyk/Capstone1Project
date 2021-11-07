@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, TextAreaField, IntegerField, FileField
+from wtforms import StringField, SelectField, TextAreaField, IntegerField, FileField, BooleanField
 from flask_wtf.file import FileRequired, FileAllowed
-from wtforms.validators import InputRequired
+from wtforms.validators import InputRequired, AnyOf
 
 
-class HeadpieceForm(FlaskForm):
+class PropAndHeadpieceForm(FlaskForm):
     '''docstring'''
 
     name = StringField('Name', 
@@ -14,15 +14,23 @@ class HeadpieceForm(FlaskForm):
     quantity = IntegerField('Quantity', 
                 validators=[InputRequired()])
     image_url = FileField('Image URL Of Headpiece',  
-                validators=[FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
+                validators=[FileAllowed(['jpg', 'png'], 'Images only!')])
     current_location = StringField('Current Location',
                 validators=[InputRequired()])
     storage_location = StringField('Storage Location',
                 validators=[InputRequired()])
 
 
-class SearchForm(FlaskForm):
+class ProductionForm(FlaskForm):
     '''docstring'''
 
-    production = SelectField('Production Name')
-    level = SelectField('Ballet Level')
+    name = StringField('Name', 
+                validators=[InputRequired()])
+    last_performed = IntegerField('Year of Last Performance')
+    image_url = FileField('Image URL Of Production', 
+                validators=[FileAllowed(['jpg', 'png'], 'Images only!')])
+    is_current = BooleanField('Is Current Production', 
+                default=False, validators=[AnyOf([True, False])])
+
+
+ 
