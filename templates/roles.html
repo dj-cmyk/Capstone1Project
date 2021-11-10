@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
+
+
 {% block content %}
 <h2>All Roles</h2>
-<div class="display-cards">
+<div class="display-cards container d-flex flex-row justify-content-center flex-wrap">
 {% for role in roles %}
   <div class="card" style="width: 18rem;">
     <img class="card-img-top" src="{{ role.costume.image_url }}" alt="Card image cap">
@@ -10,12 +12,9 @@
       <h5 class="card-title">{{ role.name }}</h5>
       <p>{{ role.level.name }}</p>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item"></li>
-    </ul>
     <div class="card-body">
-      <a href="/costumes/{{ role.id }}" class="btn btn-sm btn-secondary">Details</a>
-      <a href="/costumes/{{ role.id }}/edit" class="btn btn-sm btn-secondary">Edit</a>
+      <a href="/roles/{{ role.id }}" class="btn btn-sm btn-secondary">Details</a>
+      <a href="/roles/{{ role.id }}/edit" class="btn btn-sm btn-secondary">Edit</a>
       <a href="/" class="btn btn-sm btn-secondary">Home</a>
     </div>
   </div>

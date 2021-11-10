@@ -33,4 +33,17 @@ class ProductionForm(FlaskForm):
                 default=False, validators=[AnyOf([True, False])])
 
 
+class RoleForm(FlaskForm):
+    '''docstring'''
+
+    name = StringField('Name', 
+                validators=[InputRequired()])
+    production_id = SelectField('Production')
+    level_id = SelectField('Level')
+    cg1_id = SelectField('Costume - Leotard/Dress')
+    cg2_id = SelectField('Costume - Skirt/Tutu')
+    cg3_id = SelectField('Costume - Arm Puffs / Additional Items')
+    headpiece_id = SelectField('Headpiece')
+    prop_id = SelectField('Prop')
+
  

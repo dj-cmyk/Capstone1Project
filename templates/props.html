@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="display-cards container d-flex flex-row justify-content-center flex-wrap">
+{% for prop in props %}
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ prop.image_url }}" alt="{{ prop.description }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ prop.name }}</h5>
+      <p class="card-text">{{ prop.description }}</p>
+    </div>
+    <div class="card-body">
+      <a href="/props/{{ prop.id }}" class="btn btn-sm btn-secondary">Details</a>
+      <a href="/" class="btn btn-sm btn-secondary">Home</a>
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+{% endblock %}

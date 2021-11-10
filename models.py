@@ -247,6 +247,7 @@ class Role(db.Model):
     prop = db.relationship('Prop', backref='roles')
     level = db.relationship('Level', backref='roles')
     headpiece = db.relationship('Headpiece', backref='roles')
+    production = db.relationship('Production', backref='roles')
 
 
 

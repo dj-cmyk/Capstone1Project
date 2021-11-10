@@ -1,24 +1,29 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 
-<div class="display-cards">
-{% for production in productions %}
-  <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="{{ production.image_url }}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{ production.name }}</h5>
-      {% if production.is_current %}
-      <p>Current Production</p>
-      {% endif %}
-    <div class="card-body">
-      <a href="/productions/{{ production.id }}" class="btn btn-sm btn-secondary">Production Details</a>
-      <a href="/{{ production.id }}/costumes" class="btn btn-sm btn-secondary">Costumes</a>
-      <a href="/productions/{{ production.id }}/edit" class="btn btn-sm btn-secondary">Edit</a>
-      <a href="/" class="btn btn-sm btn-secondary">Home</a>
+<div class="display-cards container d-flex flex-row justify-content-around flex-wrap">
+  {% for production in productions %}
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{ production.image_url }}" alt="Image for {{ production.name }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ production.name }}</h5>
+        {% if production.is_current %}
+        <p>Current Production</p>
+        {% endif %}
+        </div>
+      <div class="card-body">
+        <a href="/productions/{{ production.id }}" class="btn btn-sm btn-secondary">Production Details</a>
+        <a href="/{{ production.id }}/costumes" class="btn btn-sm btn-secondary">Costumes</a>
+        <a href="/productions/{{ production.id }}/edit" class="btn btn-sm btn-secondary">Edit</a>
+      </div>
     </div>
-  </div>
-{% endfor %}
+  {% endfor %}
 </div>
 
+<div class="container">
+<a href="/productions/new" class="btn btn-primary">Add New Production</a>
+<a href="/" class="btn btn-secondary">Home</a>
+</div>
 {% endblock %}

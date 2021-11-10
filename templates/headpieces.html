@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="display-cards">
+<div class="display-cards container d-flex flex-row justify-content-center flex-wrap">
 {% for headpiece in headpieces %}
   <div class="card" style="width: 18rem;">
     <img class="card-img-top" src="{{ headpiece.image_url }}" alt="{{ headpiece.description }}">

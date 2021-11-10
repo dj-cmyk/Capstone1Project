@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="display-cards container d-flex flex-row justify-content-center flex-wrap">
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ costume.image_url }}" alt="{{ costume.description }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ costume.name }}</h5>
+      <p class="card-text">{{ costume.description }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Quantity: {{ costume.quantity}}</li>
+      <li class="list-group-item">Current Location: {{ costume.current_location}}</li>
+      <li class="list-group-item">Storage Location: {{ costume.storage_location}}</li>
+    </ul>
+    <div class="card-body">
+      <a href="/costumes" class="btn btn-sm btn-secondary">All costumes</a>
+      <a href="/costumes/{{ costume.id }}/edit" class="btn btn-sm btn-secondary">Edit</a>
+      <a href="/costumes/{{ costume.id }}/delete" class="btn btn-sm btn-secondary">Delete</a>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

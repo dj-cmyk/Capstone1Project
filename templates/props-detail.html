@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="display-cards container d-flex flex-row justify-content-center flex-wrap">
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ prop.image_url }}" alt="{{ prop.description }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ prop.name }}</h5>
+      <p class="card-text">{{ prop.description }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Quantity: {{ prop.quantity}}</li>
+      <li class="list-group-item">Current Location: {{ prop.current_location}}</li>
+      <li class="list-group-item">Storage Location: {{ prop.storage_location}}</li>
+    </ul>
+    <div class="card-body">
+      <a href="/props" class="btn btn-sm btn-secondary">All props</a>
+      <a href="/props/{{ prop.id }}/edit" class="btn btn-sm btn-secondary">Edit</a>
+      <a href="/props/{{ prop.id }}/delete" class="btn btn-sm btn-secondary">Delete</a>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

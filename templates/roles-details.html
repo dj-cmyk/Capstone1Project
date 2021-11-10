@@ -2,7 +2,7 @@
 
 {% block content %}
 <h2>{{ role.name }}</h2>
-
+<div class="display-cards container d-flex flex-row justify-content-center flex-wrap">
     <div class="card headpiece-card" style="width: 18rem;">
         <img class="card-img-top" src="{{ role.headpiece.image_url}}" alt="Card image cap">
         <div class="card-body">
@@ -83,5 +83,6 @@
         </ul>
     </div>
     {% endif %}
-
+</div>
+<a href="/roles/{{ role.id }}/delete" class="btn btn-warning">Delete Role</a>
 {% endblock %}
