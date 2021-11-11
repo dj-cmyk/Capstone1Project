@@ -31,7 +31,7 @@ connect_db(app)
 @app.route('/')
 def display_homepage():
     '''docstring'''
-    return render_template('index.html')
+    return redirect('/productions')
 
 
 
@@ -143,8 +143,19 @@ def delete_production(prod_id):
 def list_all_headpieces():
     '''docstring'''
     headpieces = Headpiece.query.all()
+
     return render_template('headpieces.html', headpieces=headpieces)
 
+
+# list all headpieces by production
+@app.route('/<int:prod_id>/headpieces')
+def list_headpieces_by_production(prod_id):
+    '''docstring'''
+    roles = Role.query.filter_by(production_id = prod_id)
+    headpiece_ids = [role.headpiece_id for role in roles]
+    headpieces = Headpiece.query.filter(Headpiece.id.in_(headpiece_ids)).all()
+
+    return render_template('headpieces.html', headpieces=headpieces)
 
 # list single headpiece
 @app.route('/headpieces/<int:h_id>')
@@ -239,6 +250,16 @@ def list_all_props():
     props = Prop.query.all()
     return render_template('props.html', props=props)
 
+# list all props by production
+@app.route('/<int:prod_id>/props')
+def list_props_by_production(prod_id):
+    '''docstring'''
+    roles = Role.query.filter_by(production_id = prod_id)
+    prop_ids = [role.prop_id for role in roles]
+    props = Prop.query.filter(Prop.id.in_(prop_ids)).all()
+
+    return render_template('props.html', props=props)
+
 # list single prop
 @app.route('/props/<int:prop_id>')
 def list_prop_detail(prop_id):
@@ -330,15 +351,19 @@ def list_all_costumes():
     return render_template('costumes.html', costumes=costumes)
 
 
-# list of costumes by production
+# list all props by production
 @app.route('/<int:prod_id>/costumes')
 def list_costumes_by_production(prod_id):
-    '''list of all costumes in a specific production'''
-
-    production = Production.query.get_or_404(prod_id)
+    '''docstring'''
     roles = Role.query.filter_by(production_id = prod_id)
+    c1_ids = [role.cg1_id for role in roles]
+    c2_ids = [role.cg2_id for role in roles]
+    c3_ids = [role.cg3_id for role in roles]
+    ids = c1_ids + c2_ids + c3_ids
+    costumes = CostumeGroup.query.filter(CostumeGroup.id.in_(ids)).all()
 
-    return render_template('costumes-production.html', production=production, roles=roles)
+    return render_template('costumes.html', costumes=costumes)
+
 
 
 # list costume detail 
@@ -434,6 +459,16 @@ def list_all_roles():
     '''docstring'''
     roles = Role.query.all()
     return render_template('roles.html', roles=roles)
+
+# list of roles by production
+@app.route('/<int:prod_id>/roles')
+def list_roles_by_production(prod_id):
+    '''list of all costumes in a specific production'''
+
+    production = Production.query.get_or_404(prod_id)
+    roles = Role.query.filter_by(production_id = prod_id)
+
+    return render_template('costumes-production.html', production=production, roles=roles)
 
 # list one role
 @app.route('/roles/<int:role_id>')

@@ -2,8 +2,6 @@
 
 {% block content %}
 <h2>Roles</h2>
-<p>FILTER BUTTON HERE FOR PRODUCTION</p>
-<p>FILTER BUTTON HERE FOR LEVEL</p>
 <div class="display-cards container d-flex flex-row justify-content-center flex-wrap">
 {% for role in roles %}
   <div class="card" style="width: 18rem;">
@@ -26,8 +24,6 @@
       <p></p>
       <a href="/roles/{{ role.id }}" class="btn btn-sm btn-secondary">Role Details</a>
       <a href="/roles/{{ role.id }}/edit" class="btn btn-sm btn-secondary">Edit Role</a>
-      <p></p>
-      <a href="/" class="btn btn-sm btn-secondary">Home</a>
     </div>
   </div>
 {% endfor %}

@@ -7,11 +7,105 @@
     <link rel="stylesheet" href="/static/app.css">
     <title>KPBA Costume Inventory</title>
 </head>
+
 <body>
-    <h1>KPBA Costume Inventory</h1>
-    {% block topbar %} {% endblock %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">KPBA Costume Inventory</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Nutcracker</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/1/roles">Roles</a>
+                  <a class="dropdown-item" href="/1/costumes">Costumes</a>
+                  <a class="dropdown-item" href="/1/headpieces">Headpieces</a>
+                  <a class="dropdown-item" href="/1/props">Props</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sleeping Beauty</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/2/roles">Roles</a>
+                  <a class="dropdown-item" href="/2/costumes">Costumes</a>
+                  <a class="dropdown-item" href="/2/headpieces">Headpieces</a>
+                  <a class="dropdown-item" href="/2/props">Props</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Swan Lake</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/3/roles">Roles</a>
+                  <a class="dropdown-item" href="/3/costumes">Costumes</a>
+                  <a class="dropdown-item" href="/3/headpieces">Headpieces</a>
+                  <a class="dropdown-item" href="/3/props">Props</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Don Quixote</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/4/roles">Roles</a>
+                  <a class="dropdown-item" href="/4/costumes">Costumes</a>
+                  <a class="dropdown-item" href="/4/headpieces">Headpieces</a>
+                  <a class="dropdown-item" href="/4/props">Props</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Wonderful Wizard of Oz</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/5/roles">Roles</a>
+                  <a class="dropdown-item" href="/5/costumes">Costumes</a>
+                  <a class="dropdown-item" href="/5/headpieces">Headpieces</a>
+                  <a class="dropdown-item" href="/5/props">Props</a>
+                </div>
+              </li>
+            </ul>
+            <!-- <form class="d-flex">
+              <input class="form-control me-sm-2" type="text" placeholder="Search">
+              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+          </div>
+        </div>
+      </nav>
+    
     <div class="container">
     {% block content %} {% endblock %}
     </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-bottom">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Add New Production</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Add New Costume</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Add New Headpiece</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Add New Prop</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Add New Role</a>
+              </li>   
+          </div>
+        </div>
+      </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
