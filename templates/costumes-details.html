@@ -14,6 +14,14 @@
       <li class="list-group-item">Current Location: {{ costume.current_location}}</li>
       <li class="list-group-item">Storage Location: {{ costume.storage_location}}</li>
     </ul>
+    <ul class="list-group list-group-flush">
+      <p class="card-text">Used for the following roles: </p>
+      {% for item in roles %}
+      {% for role in item %}
+      <li class="list-group-item">{{ role.production.name }} - {{ role.level.name }} - {{ role.name }}</li>
+      {% endfor %}
+      {% endfor %}
+    </ul>
     <div class="card-body">
       <a href="/costumes" class="btn btn-sm btn-secondary">All costumes</a>
       <a href="/costumes/{{ costume.id }}/edit" class="btn btn-sm btn-secondary">Edit</a>

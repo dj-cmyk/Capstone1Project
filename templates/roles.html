@@ -1,20 +1,32 @@
 {% extends 'base.html' %}
 
-
-
 {% block content %}
-<h2>All Roles</h2>
+<h2>Roles</h2>
+<p>FILTER BUTTON HERE FOR PRODUCTION</p>
+<p>FILTER BUTTON HERE FOR LEVEL</p>
 <div class="display-cards container d-flex flex-row justify-content-center flex-wrap">
 {% for role in roles %}
   <div class="card" style="width: 18rem;">
+    <h5 class="card-title">{{ role.production.name }}</h5>
+    <h6 class="card-title">{{ role.level.name }}</h6>
+    <h6 class="card-title">{{ role.name }}</h6>
     <img class="card-img-top" src="{{ role.costume.image_url }}" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">{{ role.name }}</h5>
-      <p>{{ role.level.name }}</p>
-    </div>
-    <div class="card-body">
-      <a href="/roles/{{ role.id }}" class="btn btn-sm btn-secondary">Details</a>
-      <a href="/roles/{{ role.id }}/edit" class="btn btn-sm btn-secondary">Edit</a>
+      <a href="/costumes/{{ role.costume.id }}" class="btn btn-sm btn-secondary">Tops</a>
+      {% if role.skirt %}
+      <a href="/costumes/{{ role.skirt.id }}" class="btn btn-sm btn-secondary">Bottoms</a>
+      {% endif %}
+      {% if role.armpuffs %}
+      <a href="/costumes/{{ role.armpuffs.id }}" class="btn btn-sm btn-secondary">Accessory</a>
+      {% endif %}
+      <a href="/headpieces/{{ role.headpiece.id }}" class="btn btn-sm btn-secondary">Headpiece</a>
+      {% if role.prop %}
+      <a href="/props/{{ role.prop.id }}" class="btn btn-sm btn-secondary">Prop</a>
+      {% endif %}
+      <p></p>
+      <a href="/roles/{{ role.id }}" class="btn btn-sm btn-secondary">Role Details</a>
+      <a href="/roles/{{ role.id }}/edit" class="btn btn-sm btn-secondary">Edit Role</a>
+      <p></p>
       <a href="/" class="btn btn-sm btn-secondary">Home</a>
     </div>
   </div>

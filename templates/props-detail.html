@@ -14,6 +14,12 @@
       <li class="list-group-item">Current Location: {{ prop.current_location}}</li>
       <li class="list-group-item">Storage Location: {{ prop.storage_location}}</li>
     </ul>
+    <ul class="list-group list-group-flush">
+      <p class="card-text">Used for the following roles: </p>
+      {% for role in roles %}
+      <li class="list-group-item">{{ role.production.name }} - {{ role.level.name }} - {{ role.name }}</li>
+      {% endfor %}
+    </ul>
     <div class="card-body">
       <a href="/props" class="btn btn-sm btn-secondary">All props</a>
       <a href="/props/{{ prop.id }}/edit" class="btn btn-sm btn-secondary">Edit</a>

@@ -151,7 +151,8 @@ def list_all_headpieces():
 def list_one_headpiece(h_id):
     '''docstring'''
     headpiece = Headpiece.query.get_or_404(h_id)
-    return render_template('headpieces-detail.html', headpiece=headpiece)
+    roles = Role.query.filter_by(headpiece_id = h_id)
+    return render_template('headpieces-detail.html', headpiece=headpiece, roles=roles)
 
 
 # add new headpiece
@@ -243,7 +244,8 @@ def list_all_props():
 def list_prop_detail(prop_id):
     '''docstring'''
     prop = Prop.query.get_or_404(prop_id)
-    return render_template('props-detail.html', prop=prop)
+    roles = Role.query.filter_by(prop_id = prop_id)
+    return render_template('props-detail.html', prop=prop, roles=roles)
 
 # add new prop
 @app.route('/props/new', methods=['GET', 'POST'])
@@ -344,8 +346,11 @@ def list_costumes_by_production(prod_id):
 def get_costume_details(costume_id):
     '''docstring'''
     costume = CostumeGroup.query.get_or_404(costume_id)
-    
-    return render_template('costumes-details.html', costume=costume)
+    cg1 = Role.query.filter_by(cg1_id = costume_id)
+    cg2 = Role.query.filter_by(cg2_id = costume_id)
+    cg3 = Role.query.filter_by(cg3_id = costume_id)
+    roles = [cg1, cg2, cg3]
+    return render_template('costumes-details.html', costume=costume, roles=roles)
 
 
 # add new costume
