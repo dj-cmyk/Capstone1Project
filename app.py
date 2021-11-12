@@ -157,6 +157,16 @@ def list_headpieces_by_production(prod_id):
 
     return render_template('headpieces.html', headpieces=headpieces)
 
+# list all headpieces by level
+@app.route('/levels/<int:level_id>/headpieces')
+def list_headpieces_by_level(level_id):
+    '''docstring'''
+    roles = Role.query.filter_by(level_id = level_id)
+    headpiece_ids = [role.headpiece_id for role in roles]
+    headpieces = Headpiece.query.filter(Headpiece.id.in_(headpiece_ids)).all()
+
+    return render_template('headpieces.html', headpieces=headpieces)
+
 # list single headpiece
 @app.route('/headpieces/<int:h_id>')
 def list_one_headpiece(h_id):
@@ -260,6 +270,16 @@ def list_props_by_production(prod_id):
 
     return render_template('props.html', props=props)
 
+# list all props by level
+@app.route('/levels/<int:level_id>/props')
+def list_props_by_level(level_id):
+    '''docstring'''
+    roles = Role.query.filter_by(level_id = level_id)
+    prop_ids = [role.prop_id for role in roles]
+    props = Prop.query.filter(Prop.id.in_(prop_ids)).all()
+
+    return render_template('props.html', props=props)
+
 # list single prop
 @app.route('/props/<int:prop_id>')
 def list_prop_detail(prop_id):
@@ -351,7 +371,7 @@ def list_all_costumes():
     return render_template('costumes.html', costumes=costumes)
 
 
-# list all props by production
+# list all costumes by production
 @app.route('/<int:prod_id>/costumes')
 def list_costumes_by_production(prod_id):
     '''docstring'''
@@ -364,6 +384,19 @@ def list_costumes_by_production(prod_id):
 
     return render_template('costumes.html', costumes=costumes)
 
+
+# list all costumes by level
+@app.route('/levels/<int:level_id>/costumes')
+def list_costumes_by_level(level_id):
+    '''docstring'''
+    roles = Role.query.filter_by(level_id = level_id)
+    c1_ids = [role.cg1_id for role in roles]
+    c2_ids = [role.cg2_id for role in roles]
+    c3_ids = [role.cg3_id for role in roles]
+    ids = c1_ids + c2_ids + c3_ids
+    costumes = CostumeGroup.query.filter(CostumeGroup.id.in_(ids)).all()
+
+    return render_template('costumes.html', costumes=costumes)
 
 
 # list costume detail 
@@ -515,7 +548,7 @@ def add_new_role():
         db.session.add(role)
         db.session.commit()
 
-        return redirect("/roles/")
+        return redirect("/roles")
 
     else:
         return render_template('roles-add.html', form=form)
@@ -544,10 +577,14 @@ def edit_role(role_id):
         role.production_id = request.form.get("production_id", role.production_id)
         role.level_id = request.form.get("level_id", role.level_id)
         role.cg1_id = request.form.get("cg1_id", role.cg1_id)
-        role.cg2_id = request.form.get("cg2_id", role.cg2_id)
-        role.cg3_id = request.form.get("cg3_id", role.cg3_id)
         role.headpiece_id = request.form.get("headpiece_id", role.headpiece_id)
-        role.prop_id = request.form.get("prop_id", role.prop_id)
+
+        if request.form.get("cg2_id") != '':
+            role.cg2_id = request.form.get("cg2_id", role.cg2_id)
+        if request.form.get("cg3_id") != '':
+            role.cg3_id = request.form.get("cg3_id", role.cg3_id)
+        if request.form.get("prop_id") != '':
+            role.prop_id = request.form.get("prop_id", role.prop_id)
         
         db.session.commit()
 
@@ -565,3 +602,10 @@ def delete_role(role_id):
     db.session.delete(role)
     db.session.commit()
     return redirect('/roles')
+
+
+@app.route('/levels')
+def list_all_levels():
+    '''docstring'''
+    levels = Level.query.all()
+    return render_template('levels.html', levels=levels)

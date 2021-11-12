@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="display-cards container d-flex flex-row justify-content-around flex-wrap">
+  {% for level in levels %}
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{ level.name }}</h5>
+        </div>
+      <div class="card-body">
+        <a href="/levels/{{ level.id }}/costumes" class="btn btn-sm btn-secondary">Costumes by Level</a>
+        <a href="/levels/{{ level.id }}/headpieces" class="btn btn-sm btn-secondary">Headpieces by Level</a>
+        <a href="/levels/{{ level.id }}/props" class="btn btn-sm btn-secondary">Props by Level</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
